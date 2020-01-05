@@ -1,0 +1,156 @@
+package model;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.session.SqlSession;
+
+import model.mapper.VacationMapper;
+
+public class VacationDao {
+	private Map<String,Object> map=new HashMap<String,Object>();
+    private Class<VacationMapper> cls = VacationMapper.class;
+    
+	public int maxnum() {
+		SqlSession session = DBConnection.getConnection();
+		try {
+			return session.getMapper(cls).maxnum();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			 DBConnection.close(session);
+		}
+		return 0;
+	}
+	//게시물 등록
+	
+	public boolean insert(Vacation vacation) {
+		SqlSession session = DBConnection.getConnection();
+		try {
+			int cnt = session.getMapper(cls).insert(vacation);
+			if (cnt > 0) return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			 DBConnection.close(session);
+		}
+		return false;
+	}
+	
+	public int vacationCount(String column, String find, int state,String id,String dept) {
+		SqlSession session = DBConnection.getConnection();
+		try {
+			map.clear();
+			if(column != null) {
+				String[] col = column.split(",");
+			    map.put("col1",col[0]);
+			    if(col.length == 2) {
+			       map.put("col2",col[1]);
+			    }
+			    map.put("find",find);
+			    map.put("id", id);
+			    map.put("dept", dept);
+			}
+		    map.put("state",state);
+			return session.getMapper(cls).vacationCount(map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			 DBConnection.close(session);
+		}
+		return 0;
+	}
+	public List<Vacation> list
+	      (int pageNum,int limit,String column, String find, int state, String id, String dept) {
+		SqlSession session = DBConnection.getConnection();
+		try {
+			map.clear();
+			map.put("start", (pageNum -1) * limit);
+			map.put("limit",limit);
+			if(column != null) {
+				String[] col = column.split(",");
+			    map.put("col1",col[0]);
+			    if(col.length == 2) {
+			       map.put("col2",col[1]);
+			    }
+			    map.put("find",find);
+
+			}
+		    map.put("state",state);
+		    map.put("id", id);
+		    map.put("dept",dept);
+			return session.getMapper(cls).select(map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			 DBConnection.close(session);
+		}
+		return null;		
+	}
+
+	public Vacation selectOne(int num, int id, int state) {
+		SqlSession session = DBConnection.getConnection();
+		try {
+			map.clear();
+			map.put("num", num);
+			map.put("id", id);
+			map.put("state", state);
+			return session.getMapper(cls).select(map).get(0);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			 DBConnection.close(session);
+		}
+		return null;
+	}
+	
+	//조회수 증가
+	public void readcntadd(int num) {
+		SqlSession session = DBConnection.getConnection();
+		try {
+			session.getMapper(cls).readcntadd(num);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			 DBConnection.close(session);
+		}
+	}
+	//답글의 순서 지정
+	public void grpStepAdd(int grp,int grpstep) {
+		SqlSession session = DBConnection.getConnection();
+		try {
+			session.getMapper(cls).grpStepAdd(grp,grpstep);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			 DBConnection.close(session);
+		}
+	}
+	//게시글 수정
+	public boolean update(Vacation vacation) {
+		SqlSession session = DBConnection.getConnection();
+		try {
+			int cnt = session.getMapper(cls).update(vacation);
+			if (cnt > 0) return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			 DBConnection.close(session);
+		}
+		return false;
+	}
+	//게시글 삭제
+	public boolean delete(int num) {
+		SqlSession session = DBConnection.getConnection();
+		try {
+			int cnt = session.getMapper(cls).delete(num);
+			if (cnt > 0) return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			 DBConnection.close(session);
+		}
+		return false;
+	}
+}

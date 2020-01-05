@@ -1,0 +1,10 @@
+package model.mapper;
+
+import org.apache.ibatis.annotations.Insert;
+
+import model.Vote;
+
+public interface VoteMapper {
+	@Insert("insert into vote (id, votedid) values (#{id},#{votedid})")
+	int insert(Vote vote);
+}

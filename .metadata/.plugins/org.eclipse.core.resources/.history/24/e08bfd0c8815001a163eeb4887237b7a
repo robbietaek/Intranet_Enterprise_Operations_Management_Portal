@@ -1,0 +1,74 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="decorator"
+	uri="http://www.opensymphony.com/sitemesh/decorator"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Goodee</title>
+</head>
+<body>
+	<div class="content-wrapper">
+		<div class="content">
+			<div class="breadcrumb-wrapper breadcrumb-contacts">
+				<div>
+					<h1>부서원리스트</h1>
+
+					<nav aria-label="breadcrumb">
+						<ol class="breadcrumb p-0">
+							<li class="breadcrumb-item"><a href="index.html"> <span
+									class="mdi mdi-home"></span>
+							</a></li>
+							<li class="breadcrumb-item">인사행정</li>
+							<li class="breadcrumb-item" aria-current="page">부서원 리스트</li>
+						</ol>
+					</nav>
+
+				</div>
+			</div>
+
+
+			<div class="row">
+				<c:forEach var="m" items="${list}">
+					<div class="col-lg-6 col-xl-4">
+						<div class="card card-default p-4">
+							<a class="media text-secondary"> <img
+								src='picture/${m.picture}' width="200" class="mr-3 img-fluid rounded" alt="Avatar Image">
+								<div class="media-body">
+									<h5 class="mt-0 mb-2 text-dark">&nbsp;${m.id}</h5>
+									<ul class="list-unstyled">
+										<li class="d-flex mb-1"><i
+											class="mdi mdi-account-network"></i> <span>&nbsp;부서 :
+												${m.dept}</span></li>
+										<li class="d-flex mb-1"><i class="mdi mdi-stairs"></i> <span>&nbsp;직급
+												: ${m.position}</span></li>
+										<li class="d-flex mb-1"><i class="mdi mdi-emoticon-happy"></i>
+											<span>&nbsp;이름 : ${m.name}</span></li>
+										<li class="d-flex mb-1"><i class="mdi mdi-phone mr-1"></i>
+											<span>&nbsp;전화번호 : ${m.tel}</span></li>
+									</ul>
+								</div>
+							</a>
+							<hr>
+							<div class="text-right mb-3">
+							<form action="emplistform.do" name="ct" method="POST">
+								<input type="hidden" name="id" value="${m.id}"> <input
+									type="submit" class="btn btn-primary mb-2 btn-pill"
+									value="출퇴근확인">
+							</form>
+							<form action="iddelete.do" name="de" method="POST">
+								<input type="hidden" name="id" value="${m.id}"> <input
+									type="submit" class="btn btn-primary mb-2 btn-pill" value="탈퇴">
+							</form>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

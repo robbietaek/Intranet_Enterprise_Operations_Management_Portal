@@ -1,0 +1,12 @@
+package model;
+
+import java.sql.Date;
+
+public class Commute {
+	private int num;
+	private String id;
+	private Date empin;
+	private Date empout;
+	private String feel;
+	private String content;
+}

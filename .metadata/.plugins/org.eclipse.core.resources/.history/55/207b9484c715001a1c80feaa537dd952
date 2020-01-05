@@ -1,0 +1,179 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="decorator"
+	uri="http://www.opensymphony.com/sitemesh/decorator"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Goodee</title>
+</head>
+<body>
+	<div class="content-wrapper">
+		<div class="content">
+			<div class="row">
+				<div class="col-md-6 col-lg-6 col-xl-3">
+					<div class="media widget-media p-4 bg-white border">
+						<div class="icon rounded-circle mr-4 bg-primary">
+							<i class="mdi mdi-account-outline text-white "></i>
+						</div>
+						<div class="media-body align-self-center">
+							<h4 class="text-primary mb-2">
+								<a href="pmlist1Form.do">개발부서 리스트</a>
+							</h4>
+							<p>${count1}</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-6 col-xl-3">
+					<div class="media widget-media p-4 bg-white border">
+						<div class="icon rounded-circle bg-warning mr-4">
+							<i class="mdi mdi-cart-outline text-white "></i>
+						</div>
+						<div class="media-body align-self-center">
+							<h4 class="text-primary mb-2">
+								<a href="pmlist2Form.do">회계부서 리스트</a>
+							</h4>
+							<p>${count2}</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-6 col-xl-3">
+					<div class="media widget-media p-4 bg-white border">
+						<div class="icon rounded-circle mr-4 bg-danger">
+							<i class="mdi mdi-cart-outline text-white "></i>
+						</div>
+						<div class="media-body align-self-center">
+							<h4 class="text-primary mb-2">
+								<a href="pmlist3Form.do">금융부서 리스트</a>
+							</h4>
+							<p>${count3}</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-6 col-xl-3">
+					<div class="media widget-media p-4 bg-white border">
+						<div class="icon bg-success rounded-circle mr-4">
+							<i class="mdi mdi-diamond text-white "></i>
+						</div>
+						<div class="media-body align-self-center">
+							<h4 class="text-primary mb-2">
+								<a href="pmlist4Form.do">영업부서 리스트</a>
+							</h4>
+							<p>${count4}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-12">
+					<!-- Recent Order Table -->
+					<div class="card card-table-border-none" id="recent-orders">
+						<div class="card-header justify-content-between">
+							<h2>회원가입 요청 리스트</h2>
+						</div>
+						<div class="card-body pt-0 pb-5">
+							<table
+								class="table card-table table-responsive table-responsive-large"
+								style="width: 100%">
+								<thead>
+									<tr>
+										<th class="d-none d-lg-table-cell">사원번호</th>
+										<th class="d-none d-lg-table-cell">이름</th>
+										<th class="d-none d-lg-table-cell">부서</th>
+										<th class="d-none d-lg-table-cell">직급</th>
+										<th class="d-none d-lg-table-cell">전화번호</th>
+										<th class="d-none d-lg-table-cell">생일</th>
+										<th class="d-none d-lg-table-cell">입사일</th>
+										<th class="d-none d-lg-table-cell">승인</th>
+										<th class="d-none d-lg-table-cell">반려</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="m" items="${list}">
+										<tr>
+											<td class="d-none d-lg-table-cell">${m.id}</td>
+											<td class="d-none d-lg-table-cell">${m.name}</td>
+											<td class="d-none d-lg-table-cell">${m.dept}</td>
+											<td class="d-none d-lg-table-cell">${m.position}</td>
+											<td class="d-none d-lg-table-cell">${m.tel}</td>
+											<td class="d-none d-lg-table-cell">${m.birthday}</td>
+											<td class="d-none d-lg-table-cell">${m.hiredate}</td>
+											<td>
+												<form action=registsubmit.do name="s" method="POST">
+													<input type="hidden" value="${m.id}" name="id"> <input
+														type="hidden" value="${m.name}" name="name"> <input
+														type="hidden" value="${m.dept}" name="dept"> <input
+														type="hidden" value="${m.position}" name="position">
+													<input type="hidden" value="${m.tel}" name="tel"> <input
+														type="hidden" value="${m.birthday}" name="birthday">
+													<input type="hidden" value="${m.hiredate}" name="hiredate">
+													<input type="hidden" value="${m.pass}" name="pass">
+													<input type="hidden" value="${m.picture}" name="picture">
+													<input type="submit" class="btn btn-primary mb-2 btn-pill"
+														value="승인">
+												</form>
+											</td>
+											<td>
+												<form action="registdeny.do" name="d" method="POST">
+													<input type="hidden" value="${m.id }" name="id"> <input
+														type="submit" class="btn btn-primary mb-2 btn-pill"
+														value="반려">
+												</form>
+											</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xl-12">
+					<!-- New Customers -->
+					<div class="card card-table-border-none overflow-auto" data-scroll-height="450">
+						<div class="card-header justify-content-between ">
+							<h2>이달의 직원 선정하기 (투표 많은 순)</h2>
+							<button type="submit" class="btn btn-primary mb-2 btn-pill">선정하기</button>
+						</div>
+						<div class="card-body pt-0">
+
+							<table class="table ">
+								<tbody>
+									<c:forEach var="t" items="${recvmem}">
+										<tr>
+											<td>
+												<div class="media">
+													<div class="media-image mr-3 rounded-circle">
+														<img class="rounded-circle w-45"
+															src="picture/${t.picture}" alt="customer image"></a>
+													</div>
+													<div class="media-body align-self-center">
+														<h6 class="mt-0 text-dark font-weight-medium">${t.dept}</h6>
+														</a> <small>${t.name}</small>
+													</div>
+												</div>
+											</td>
+											<td><label class="control control-radio radio-success">선택하기
+													<input type="radio" name = "votedid" value= "${t.id}" />
+													<div class="control-indicator"></div>
+											</label></td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>

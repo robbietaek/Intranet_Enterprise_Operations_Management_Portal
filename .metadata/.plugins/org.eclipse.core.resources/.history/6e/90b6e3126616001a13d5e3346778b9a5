@@ -1,0 +1,35 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<decorators defaultdir = "/dist">
+	<decorator name = "main" page = "decorator.jsp">
+		<pattern>/dist/*</pattern>
+	</decorator>
+	<excludes>
+		<pattern>/dist/sign-in.jsp</pattern>
+		<pattern>/dist/sign-up.jsp</pattern>
+		<pattern>/dist/sendtoallForm.jsp</pattern>
+		<pattern>/dist/sendmessageForm.jsp</pattern>
+		<pattern>/dist/messageboxForm.jsp</pattern>
+		<pattern>/dist/sentmessageboxForm.jsp</pattern>
+		<pattern>/dist/vacationForm.jsp</pattern>
+		<pattern>/dist/leavework.jsp</pattern>
+		<pattern>/dist/vote.jsp</pattern>
+		<pattern>/dist/pictureForm.jsp</pattern>
+		<pattern>/dist/picture.jsp</pattern>
+		<pattern>/dist/sign-in.do</pattern>
+		<pattern>/dist/sign-up.do</pattern>
+		<pattern>/dist/sendto1Form.do*</pattern>
+		<pattern>/dist/sendto2Form.do*</pattern>
+		<pattern>/dist/sendto3Form.do*</pattern>
+		<pattern>/dist/sendto4Form.do*</pattern>
+		<pattern>/dist/sendmessageForm.do*</pattern>
+		<pattern>/dist/messageboxForm.do*</pattern>
+		<pattern>/dist/messagetextForm.do*</pattern>
+		<pattern>/dist/sentmessageboxForm.do*</pattern>
+		<pattern>/dist/vacationForm.do</pattern>
+		<pattern>/dist/empoutwriteForm.do</pattern>
+		<pattern>/dist/votelistForm.do</pattern>
+		<pattern>/dist/pictureForm.do</pattern>
+		<pattern>/dist/picture.do</pattern>
+		<pattern>/dist/vacationlistForm.do</pattern>
+	</excludes>
+</decorators>

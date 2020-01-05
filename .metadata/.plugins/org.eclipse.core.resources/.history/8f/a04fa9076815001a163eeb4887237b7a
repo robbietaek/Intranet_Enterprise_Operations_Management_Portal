@@ -1,0 +1,27 @@
+package model;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.ibatis.session.SqlSession;
+
+import model.mapper.BoardMapper;
+
+public class CommuteDao {
+	private Map<String, Object> map = new HashMap<String, Object>();
+	private Class<BoardMapper> cls = BoardMapper.class;
+
+	public boolean insert(Commute commute) {
+		SqlSession session = DBConnection.getConnection();
+		try {
+			int cnt = session.getMapper(cls).insert(commute);
+			if (cnt > 0)
+				return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConnection.close(session);
+		}
+		return false;
+	}
+}

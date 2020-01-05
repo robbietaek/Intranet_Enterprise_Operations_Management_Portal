@@ -1,0 +1,12 @@
+package model.mapper;
+
+import org.apache.ibatis.annotations.Insert;
+
+import model.Commute;
+
+public interface CommuteMapper {
+	@Insert("insert into commute "
+ + " ( num, id ,boardtype, subject, subtype, content, file1, regdate,grp, dept)"
+ + " values (#{num},#{id},#{boardtype},#{subject},#{subtype},#{content},#{file1},#{regdate},#{grp},#{dept})")
+	int insert(Commute commute);
+}

@@ -1,0 +1,90 @@
+package model.mapper;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
+
+import model.Board;
+
+public interface BoardMapper {
+
+	@Select("select ifnull(max(num),0) from board")
+	int maxnum();
+
+	@Insert("insert into board "
+ + " ( num, id ,boardtype, subject, subtype, content, file1, regdate,grp, dept)"
+ + " values (#{num},#{id},#{boardtype},#{subject},#{subtype},#{content},#{file1},#{regdate},#{grp},#{dept})")
+	int insert(Board board);
+
+	@Select({"<script>",
+		   "select count(*) from board where boardtype = #{boardtype} ",
+		   " <if test='id != null'> and id = #{id}</if>",
+		   " <if test='dept != null'> and dept = #{dept}</if>",
+		   " <if test='col1 != null'> and  ${col1} like '%${find}%'</if>",
+		   " <if test='col2 != null'> OR ${col2} like '%${find}%'</if>",
+		   "</script>"})
+	Integer boardCount(Map<String, Object> map);
+
+			@Select({"<script>",
+		    "select * from board where boardtype = #{boardtype} ",
+		    " <if test='dept != null'> and dept = #{dept}</if>",
+		    " <if test='col1 != null'> and ${col1} like '%${find}%'</if>",
+		    " <if test='col2 != null'> or ${col2} like '%${find}%'</if>",
+		    " <if test='id != null'> and id = #{id}</if>",
+		    " <choose>",
+		    " <when test='num != null'> and num = #{num} </when>",
+		    " <otherwise>"
+		    + " order by grp desc, grpstep asc limit #{start},#{limit}"
+		    + "</otherwise>",
+		     "</choose>",
+		    "</script>"})
+	List<Board> select(Map<String, Object> map);
+				
+
+	@Update("update board set readcnt = readcnt + 1 "
+			+ " where num = #{num}")
+	void readcntadd(int num);
+
+	@Update("update  board set grpstep = grpstep + 1"
+			+ " where grp = #{grp} and grpstep > #{grpstep}")
+	void grpStepAdd
+	   (@Param("grp") int grp,@Param("grpstep") int grpstep);
+
+	@Update("update  board  set subject=#{subject}, content=#{content},file1=#{file1} where num=#{num} and boardtype = #{boardtype}")
+	int update(Board board);
+
+	@Delete("delete from board where num=#{num}")
+	int delete(int num);
+	
+	
+	
+	
+	
+	
+	
+	@Insert("insert into board "
+ + " ( num, id ,boardtype, subject,content, regdate,grp, sendid, recvid)"
+ + " values (#{num},#{id},#{boardtype},#{subject},#{content},#{regdate},#{grp},#{sendid},#{recvid})")
+	int messageinsert(Board board);
+	
+	@Select({"<script>",
+	    "select * from board where boardtype = #{boardtype} ",
+	    " <if test='dept != null'> and dept = #{dept}</if>",
+	    " <if test='col1 != null'> and ${col1} like '%${find}%'</if>",
+	    " <if test='col2 != null'> or ${col2} like '%${find}%'</if>",
+	    " <if test='recvid != null'> and id = #{recvid}</if>",
+	    " <choose>",
+	    " <when test='num != null'> and num = #{num} </when>",
+	    " <otherwise>"
+	    + " order by grp desc, grpstep asc limit #{start},#{limit}"
+	    + "</otherwise>",
+	     "</choose>",
+	    "</script>"})
+List<Board> messageselect(Map<String, Object> map);
+	
+}

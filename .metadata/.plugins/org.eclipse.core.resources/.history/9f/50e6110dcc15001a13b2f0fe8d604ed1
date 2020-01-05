@@ -1,0 +1,23 @@
+package model.mapper;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Select;
+
+import model.Voted;
+
+public interface VotedMapper {
+	@Insert("insert into voted (id) values (#{id})")
+	int insert(Voted voted);
+	
+	
+	@Select("SELECT voteddid, COUNT(*) c FROM voted GROUP BY voteddid ORDER BY c desc")
+	List<Voted> select(Map<String, Object> map);
+	
+	
+	@Delete("delete from voted")
+	int delete();
+}

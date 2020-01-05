@@ -1,0 +1,60 @@
+package model.mapper;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
+
+import model.Vacation;
+
+public interface VacationMapper {
+	@Select("select ifnull(max(num),0) from vacation")
+	int maxnum();
+
+	@Insert("insert into vacation "
+ + " ( num, id , dept, startdate, enddate, vacationtype, state, grp)"
+ + " values (#{num},#{id},#{startdate},#{enddate},#{vacationtype},#{state},#{grp})")
+	int insert(Vacation vacation);
+
+	@Select({"<script>",
+		   "select count(*) from vacation where id = #{id} ",
+		   " <if test='dept != null'> and dept = #{dept}</if>",
+		   " <if test='col1 != null'> and  ${col1} like '%${find}%'</if>",
+		   " <if test='col2 != null'> OR ${col2} like '%${find}%'</if>",
+		   "</script>"})
+	Integer vacationCount(Map<String, Object> map);
+
+			@Select({"<script>",
+		    "select * from vacation where id = #{id} ",
+		    " <if test='dept != null'> and dept = #{dept}</if>",
+		    " <if test='col1 != null'> and ${col1} like '%${find}%'</if>",
+		    " <if test='col2 != null'> or ${col2} like '%${find}%'</if>",
+		    " <choose>",
+		    " <when test='num != null'> and num = #{num} </when>",
+		    " <otherwise>"
+		    + " order by grp desc, grpstep asc limit #{start},#{limit}"
+		    + "</otherwise>",
+		     "</choose>",
+		    "</script>"})
+	List<Vacation> select(Map<String, Object> map);
+					
+
+	@Update("update vacation set readcnt = readcnt + 1 "
+			+ " where num = #{num}")
+	void readcntadd(int num);
+
+	@Update("update  vacation set grpstep = grpstep + 1"
+			+ " where grp = #{grp} and grpstep > #{grpstep}")
+	void grpStepAdd
+	   (@Param("grp") int grp,@Param("grpstep") int grpstep);
+
+	@Update("update  vacation  set state=#{state} where num=#{num}")
+	int update(Vacation vacation);
+
+	@Delete("delete from vacation where num=#{num}")
+	int delete(int num);
+}

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="selection" value="집안일"/>
+		<item key="wrap" value="true"/>
+		<item key="casesensitive" value="true"/>
+		<item key="wholeword" value="false"/>
+		<item key="incremental" value="true"/>
+		<item key="isRegEx" value="false"/>
+		<list key="findhistory">
+			<item value="집안일"/>
+			<item value="vacation"/>
+			<item value="ckedit"/>
+			<item value="imgupload.do"/>
+			<item value="ckeditor"/>
+			<item value="image"/>
+			<item value="imageupload"/>
+			<item value="message"/>
+			<item value="model."/>
+			<item value="selectAdmin"/>
+			<item value="boardytype = 7;"/>
+			<item value="boardytype = 8"/>
+			<item value="boardytype = 7"/>
+			<item value="개발부서"/>
+			<item value="today"/>
+		</list>
+		<list key="replacehistory">
+			<item value="todayV"/>
+			<item value="boardnumV"/>
+			<item value="endpageV"/>
+			<item value="startpageV"/>
+			<item value="maxpageV"/>
+			<item value="findV"/>
+			<item value="columnV"/>
+			<item value="pageNumV"/>
+			<item value="limitV"/>
+			<item value="int state = 3"/>
+			<item value="Vacation"/>
+			<item value="vacation"/>
+			<item value="voted"/>
+			<item value="Voted"/>
+			<item value="vote"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="1349"/>
+		<item key="DIALOG_Y_ORIGIN" value="269"/>
+		<item key="DIALOG_WIDTH" value="288"/>
+		<item key="DIALOG_HEIGHT" value="391"/>
+		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
+	</section>
+</section>

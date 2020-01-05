@@ -1,0 +1,42 @@
+package model.mapper;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Select;
+
+import model.Commute;
+
+public interface CommuteMapper {
+	
+	@Select("select ifnull(max(num),0) from commute")
+	int maxnum();
+	
+	
+	@Insert("insert into commute "
+ + " ( num, id ,empin, empout, content, feel)"
+ + " values (#{num},#{id},#{empin},#{empout},#{content},#{feel})")
+	int insert(Commute commute);
+	
+	
+	@Select({"<script>",
+		   "select count(*) from commute where id = #{id} ",
+		   " <if test='col1 != null'> and  ${col1} like '%${find}%'</if>",
+		   " <if test='col2 != null'> OR ${col2} like '%${find}%'</if>",
+		   "</script>"})
+	Integer commuteCount(Map<String, Object> map);
+
+			@Select({"<script>",
+		    "select * from commute where id = #{id} ",
+		    " <if test='col1 != null'> and ${col1} like '%${find}%'</if>",
+		    " <if test='col2 != null'> or ${col2} like '%${find}%'</if>",
+		    " <choose>",
+		    " <when test='num != null'> and num = #{num} </when>",
+		    " <otherwise>"
+		    + " order by grp desc, grpstep asc limit #{start},#{limit}"
+		    + "</otherwise>",
+		     "</choose>",
+		    "</script>"})
+	List<Commute> select(Map<String, Object> map);
+}

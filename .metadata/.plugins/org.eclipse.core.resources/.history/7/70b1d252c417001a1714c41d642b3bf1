@@ -1,0 +1,140 @@
+#login
+/dist/index.do=index
+/dist/sign.do=regist
+/dist/sign-up.do=signup
+/dist/sign-in.do=signin
+/dist/login.do=login
+/dist/logout.do=logout
+/dist/pictureForm.do=pictureform
+/dist/picture.do=picture
+/dist/imgupload.do=imgupload
+/dist/editprofileForm.do=editprofileform
+/dist/editprofile.do=editprofile
+/dist/registsubmit.do=registsubmit
+/dist/registdeny.do=registdeny
+/dist/iddelete.do=iddelete
+/dist/pwsearch.do=pwsearch
+/dist/pwsearchForm.do=pwsearchform
+/dist/pwshowForm.do=pwshoForm
+#vacation
+/dist/vacationForm.do = vacationform
+/dist/vacationwrite.do = vacationwrite
+/dist/vacationsubmit.do = vacationsubmit
+/dist/vacationdeny.do = vacationdeny
+/dist/vacationlistForm.do = vacationlistform
+#commute
+/dist/empinwrite.do = empinwrite
+/dist/empoutwrite.do = empoutwrite
+/dist/empoutwriteForm.do = empoutwriteform
+/dist/emplistForm.do=emplistform
+
+#pm
+/dist/pmForm.do=pmForm
+/dist/pmlist1Form.do=pmlist1form
+/dist/pmlist2Form.do=pmlist2form
+/dist/pmlist3Form.do=pmlist3form
+/dist/pmlist4Form.do=pmlist4form
+
+#vote
+/dist/votelistForm.do = votelistform
+/dist/voteinsert.do=voteinsert
+/dist/votedelete.do = votedelete
+/dist/votedmember.do = votedmember
+
+
+#admin
+/dist/adminForm.do=adminform
+/dist/adminwrite.do=adminwrite
+/dist/admintextdelete.do=admintextdelete
+/dist/flow.do=flow
+/dist/flowdelete.do=flowdelete
+
+#aboutmessage
+/dist/sentmessageboxForm.do=sentmessageboxform
+/dist/sendmessageForm.do=sendmessageform
+/dist/sendmessage.do=sendmessage
+/dist/messageboxForm.do=messageboxform
+/dist/messagetextForm.do=messagetextform
+
+/dist/sendto1Form.do=sendto1form
+/dist/sendto2Form.do=sendto2form
+/dist/sendto3Form.do=sendto3form
+/dist/sendto4Form.do=sendto4form
+
+/dist/sendto1.do=sendto1
+/dist/sendto2.do=sendto2
+/dist/sendto3.do=sendto3
+/dist/sendto4.do=sendto4
+
+#board
+/dist/noticeForm.do=noticeform
+/dist/noticewriteForm.do=noticewriteform
+/dist/noticewrite.do=noticewrite
+/dist/noticetextForm.do=noticetextform
+/dist/noticeeditForm.do=noticeeditform
+/dist/noticeedit.do=noticeedit
+/dist/noticedelete.do=noticedelete
+
+#mywork
+/dist/myworkForm.do=myworkform
+/dist/myworkwriteForm.do=myworkwriteform
+/dist/myworkwrite.do=myworkwrite
+/dist/myworktextForm.do=myworktextform
+/dist/myworkeditForm.do=myworkeditform
+/dist/myworkedit.do=myworkedit
+/dist/myworkdelete.do=myworkdelete
+/dist/myworkchecklistwrite.do=myworkchecklistwrite
+/dist/myworkchecklistdelete.do=myworkchecklistdelete
+
+#grp1
+/dist/grp1Form.do=grp1form
+/dist/grp1writeForm.do=grp1writeform
+/dist/grp1write.do=grp1write
+/dist/grp1textForm.do=grp1textform
+/dist/grp1editForm.do=grp1editform
+/dist/grp1edit.do=grp1edit
+/dist/grp1delete.do=grp1delete
+/dist/grp1replywrite.do=grp1replywrite
+/dist/grp1replydelete.do=grp1replydelete
+/dist/grp1processwrite.do = grp1processwrite
+/dist/grp1processdelete.do = grp1processdelete
+
+#grp2
+/dist/grp2Form.do=grp2form
+/dist/grp2writeForm.do=grp2writeform
+/dist/grp2write.do=grp2write
+/dist/grp2textForm.do=grp2textform
+/dist/grp2editForm.do=grp2editform
+/dist/grp2edit.do=grp2edit
+/dist/grp2delete.do=grp2delete
+/dist/grp2replywrite.do=grp2replywrite
+/dist/grp2replydelete.do=grp2replydelete
+/dist/grp2processwrite.do = grp2processwrite
+/dist/grp2processdelete.do = grp2processdelete
+
+#grp3
+/dist/grp3Form.do=grp3form
+/dist/grp3writeForm.do=grp3writeform
+/dist/grp3write.do=grp3write
+/dist/grp3textForm.do=grp3textform
+/dist/grp3editForm.do=grp3editform
+/dist/grp3edit.do=grp3edit
+/dist/grp3delete.do=grp3delete
+/dist/grp3replywrite.do=grp3replywrite
+/dist/grp3replydelete.do=grp3replydelete
+/dist/grp3processwrite.do = grp3processwrite
+/dist/grp3processdelete.do = grp3processdelete
+
+#grp4
+/dist/grp4Form.do=grp4form
+/dist/grp4writeForm.do=grp4writeform
+/dist/grp4write.do=grp4write
+/dist/grp4textForm.do=grp4textform
+/dist/grp4editForm.do=grp4editform
+/dist/grp4edit.do=grp4edit
+/dist/grp4delete.do=grp4delete
+/dist/grp4replywrite.do=grp4replywrite
+/dist/grp4replydelete.do=grp4replydelete
+/dist/grp4processwrite.do = grp4processwrite
+/dist/grp4processdelete.do = grp4processdelete
+

@@ -1,0 +1,54 @@
+package model;
+
+import java.sql.Date;
+
+public class Commute {
+	private int num;
+	private String id;
+	private Date empin;
+	private Date empout;
+	private String feel;
+	private String content;
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public Date getEmpin() {
+		return empin;
+	}
+	public void setEmpin(Date empin) {
+		this.empin = empin;
+	}
+	public Date getEmpout() {
+		return empout;
+	}
+	public void setEmpout(Date empout) {
+		this.empout = empout;
+	}
+	public String getFeel() {
+		return feel;
+	}
+	public void setFeel(String feel) {
+		this.feel = feel;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	@Override
+	public String toString() {
+		return "Commute [num=" + num + ", id=" + id + ", empin=" + empin + ", empout=" + empout + ", feel=" + feel
+				+ ", content=" + content + "]";
+	}
+	
+}

@@ -1,0 +1,16 @@
+package model.mapper;
+
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Select;
+
+import model.Vote;
+
+public interface VoteMapper {
+	@Insert("insert into vote (id, votedid) values (#{id},#{votedid})")
+	int insert(Vote vote);
+	
+	@Select("select count(*) from vote where votetype = #{votetype}")
+	Integer count(Map<String, Object> map);
+}

@@ -1,0 +1,38 @@
+package model.mapper;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Select;
+
+import model.Vote;
+import model.Vote;
+
+public interface VoteMapper {
+	@Insert("insert into vote (id, votedid) values (#{id},#{votedid})")
+	int insert(Vote vote);
+	
+	
+	@Select({"<script>",
+	    "select * from vote where votetype = #{votetype} ",
+	    " <if test='dept != null'> and dept = #{dept}</if>",
+	    " <if test='col1 != null'> and ${col1} like '%${find}%'</if>",
+	    " <if test='col2 != null'> or ${col2} like '%${find}%'</if>",
+	    " <if test='id != null'> and id = #{id}</if>",
+	    " <choose>",
+	    " <when test='num != null'> and num = #{num} </when>",
+	    " <otherwise>"
+	    + " order by grp desc, grpstep asc limit #{start},#{limit}"
+	    + "</otherwise>",
+	     "</choose>",
+	    "</script>"})
+	List<Vote> select(Map<String, Object> map);
+	
+	@Select("select count(*) from vote where id = #{id}")
+	Integer check(String id);
+	
+	@Delete("delete from vote")
+	int delete();
+}

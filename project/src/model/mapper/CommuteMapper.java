@@ -1,0 +1,53 @@
+package model.mapper;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
+
+import model.Commute;
+
+public interface CommuteMapper {
+	@Select("select ifnull(max(num),0) from commute")
+	int maxnum();
+
+	@Insert("insert into commute "
+ + " ( num, id ,subject, content, empin, empout ,grp)"
+ + " values (#{num},#{id}, #{subject},#{content},#{empin},#{empout},#{grp})")
+	int insert(Commute commute);
+
+	@Select({"<script>",
+		   "select count(*) from commute where id = #{id} ",
+		   " <if test='col1 != null'> and  ${col1} like '%${find}%'</if>",
+		   " <if test='col2 != null'> OR ${col2} like '%${find}%'</if>",
+		   "</script>"})
+	Integer commuteCount(Map<String, Object> map);
+
+			@Select({"<script>",
+		    "select * from commute where id = #{id} ",
+		    " <if test='col1 != null'> and ${col1} like '%${find}%'</if>",
+		    " <if test='col2 != null'> or ${col2} like '%${find}%'</if>",
+		    " <choose>",
+		    " <when test='num != null'> and num = #{num} </when>",
+		    " <otherwise>"
+		    + " order by grp desc, grpstep asc limit #{start},#{limit}"
+		    + "</otherwise>",
+		     "</choose>",
+		    "</script>"})
+	List<Commute> select(Map<String, Object> map);
+				
+
+	@Update("update commute set readcnt = readcnt + 1 "
+			+ " where num = #{num}")
+	void readcntadd(int num);
+
+	@Update("update  commute set grpstep = grpstep + 1"
+			+ " where grp = #{grp} and grpstep > #{grpstep}")
+	void grpStepAdd
+	   (@Param("grp") int grp,@Param("grpstep") int grpstep);
+
+}
